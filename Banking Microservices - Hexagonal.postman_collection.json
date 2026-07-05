@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Banking Microservices - Hexagonal",
+		"description": "Colección completa para probar los microservicios customer-management-service y account-management-service con arquitectura hexagonal.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "customer-management-service",
+			"item": [
+				{
+					"name": "Clientes",
+					"item": [
+						{
+							"name": "1. Crear Jose Lema",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"Male\",\n  \"age\": 35,\n  \"identification\": \"1001\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\",\n  \"status\": true\n}"
+								},
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Crear Marianela Montalvo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Marianela Montalvo\",\n  \"gender\": \"Female\",\n  \"age\": 28,\n  \"identification\": \"1002\",\n  \"address\": \"Amazonas y NNUU\",\n  \"phone\": \"097548965\",\n  \"password\": \"5678\",\n  \"status\": true\n}"
+								},
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Crear Juan Osorio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Juan Osorio\",\n  \"gender\": \"Male\",\n  \"age\": 42,\n  \"identification\": \"1003\",\n  \"address\": \"13 junio y Equinoccial\",\n  \"phone\": \"098874587\",\n  \"password\": \"1245\",\n  \"status\": true\n}"
+								},
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar todos los clientes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar cliente por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes/1",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes", "1"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar cliente (PUT)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Jose Lema\",\n  \"gender\": \"Male\",\n  \"age\": 36,\n  \"identification\": \"1001\",\n  \"address\": \"Otavalo sn y principal\",\n  \"phone\": \"098254785\",\n  \"password\": \"1234\",\n  \"status\": true\n}"
+								},
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes/1",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes", "1"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar cliente parcial (PATCH)",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"phone\": \"099999999\",\n  \"status\": false\n}"
+								},
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes/1",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes", "1"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar cliente",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes/3",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes", "3"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear cliente - Validación (sin campos requeridos)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"\",\n  \"status\": true\n}"
+								},
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar cliente - No existe (404)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{client_url}}/api/v1/clientes/999",
+									"host": ["{{client_url}}"],
+									"path": ["api", "v1", "clientes", "999"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "account-management-service",
+			"item": [
+				{
+					"name": "Cuentas",
+					"item": [
+						{
+							"name": "1. Crear cuenta Ahorros - Jose Lema (478758)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"478758\",\n  \"accountType\": \"SAVINGS\",\n  \"initialBalance\": 2000,\n  \"status\": true,\n  \"customerId\": 1\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Crear cuenta Corriente - Marianela (225487)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"225487\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 100,\n  \"status\": true,\n  \"customerId\": 2\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Crear cuenta Ahorros - Juan Osorio (495878)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"495878\",\n  \"accountType\": \"SAVINGS\",\n  \"initialBalance\": 0,\n  \"status\": true,\n  \"customerId\": 3\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. Crear cuenta Ahorros - Marianela (496825)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"496825\",\n  \"accountType\": \"SAVINGS\",\n  \"initialBalance\": 540,\n  \"status\": true,\n  \"customerId\": 2\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5. Crear cuenta Corriente - Jose Lema (585545)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"585545\",\n  \"accountType\": \"CHECKING\",\n  \"initialBalance\": 1000,\n  \"status\": true,\n  \"customerId\": 1\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar todas las cuentas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar cuenta por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas/1",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas", "1"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar cuenta (PUT)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"accountNumber\": \"478758\",\n  \"accountType\": \"SAVINGS\",\n  \"initialBalance\": 2000,\n  \"status\": true,\n  \"customerId\": 1\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas/1",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas", "1"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar cuenta parcial (PATCH)",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": false\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/cuentas/1",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "cuentas", "1"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Movimientos",
+					"item": [
+						{
+							"name": "1. Retiro 575 - Jose Lema (478758)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"2022-02-09\",\n  \"value\": -575,\n  \"accountNumber\": \"478758\"\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Deposito 600 - Marianela (225487)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"2022-02-10\",\n  \"value\": 600,\n  \"accountNumber\": \"225487\"\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Deposito 150 - Juan Osorio (495878)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"2022-02-10\",\n  \"value\": 150,\n  \"accountNumber\": \"495878\"\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. Retiro 540 - Marianela (496825)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"2022-02-08\",\n  \"value\": -540,\n  \"accountNumber\": \"496825\"\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retiro con saldo insuficiente (422)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"value\": -99999,\n  \"accountNumber\": \"478758\"\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar todos los movimientos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar movimiento por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos/1",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos", "1"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar movimiento (PUT)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"date\": \"2022-02-15\",\n  \"value\": -575,\n  \"accountNumber\": \"478758\"\n}"
+								},
+								"url": {
+									"raw": "{{account_url}}/api/v1/movimientos/1",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "movimientos", "1"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reportes",
+					"item": [
+						{
+							"name": "Estado de cuenta - Marianela (Feb 2022)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/reportes?cliente=2&startDate=2022-02-01&endDate=2022-02-28",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "reportes"],
+									"query": [
+										{"key": "cliente", "value": "2"},
+										{"key": "startDate", "value": "2022-02-01"},
+										{"key": "endDate", "value": "2022-02-28"}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Estado de cuenta - Jose Lema (Todo 2022)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/reportes?cliente=1&startDate=2022-01-01&endDate=2022-12-31",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "reportes"],
+									"query": [
+										{"key": "cliente", "value": "1"},
+										{"key": "startDate", "value": "2022-01-01"},
+										{"key": "endDate", "value": "2022-12-31"}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Estado de cuenta - Cliente no existe (404)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{account_url}}/api/v1/reportes?cliente=999&startDate=2022-01-01&endDate=2022-12-31",
+									"host": ["{{account_url}}"],
+									"path": ["api", "v1", "reportes"],
+									"query": [
+										{"key": "cliente", "value": "999"},
+										{"key": "startDate", "value": "2022-01-01"},
+										{"key": "endDate", "value": "2022-12-31"}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "client_url",
+			"value": "http://localhost:8081"
+		},
+		{
+			"key": "account_url",
+			"value": "http://localhost:8080"
+		}
+	]
+}
